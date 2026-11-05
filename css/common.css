@@ -1,0 +1,734 @@
+/* =====================================================================
+   COMMON  –  sticky navbar + big footer (shared on every page)
+   ===================================================================== */
+
+/* ---------- Page-level fixes (needed for sticky to work) ----------
+   overflow-x:hidden on BOTH html and body turns body into a scroll
+   container and silently kills position:sticky. We keep the sideways
+   scroll protection (GSAP slides elements in from the sides) but use
+   html = hidden (goes to the viewport) and body = clip (no scroller). */
+html {
+  overflow-x: hidden;
+  scroll-padding-top: 92px;           /* anchor links don't hide under the sticky bar */
+}
+body {
+  overflow-x: clip;
+}
+
+/* ---------- Navbar ---------- */
+/* The wrapper itself is sticky. Before, only the inner <header> was
+   sticky, but it lived inside a wrapper exactly as tall as itself, so it
+   had nowhere to stick. */
+#site-header {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 1030;
+  width: 100%;
+}
+
+.shared-header {
+  position: relative;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  width: 100%;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.shared-header.is-scrolled {
+  border-bottom-color: transparent;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.14);
+}
+
+.shared-nav-wrap,
+.shared-footer-content {
+  width: min(100% - 2rem, 1320px);
+  margin-inline: auto;
+}
+
+.shared-nav-wrap {
+  display: flex;
+  min-height: 76px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  transition: min-height 0.25s ease;
+}
+
+.shared-header.is-scrolled .shared-nav-wrap {
+  min-height: 66px;
+}
+
+.shared-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  z-index: 1031;
+}
+
+.shared-brand-mark {
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.65rem;
+  background: #000;
+  color: #fff;
+  font-size: 1.05rem;
+}
+
+.shared-brand-name {
+  color: #000;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.shared-brand-name span {
+  color: #000;
+}
+
+.shared-menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  background: #fff;
+  color: #000;
+  cursor: pointer;
+  z-index: 1031;
+}
+
+.shared-menu-icon,
+.shared-menu-icon::before,
+.shared-menu-icon::after {
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+.shared-menu-icon {
+  position: relative;
+}
+
+.shared-menu-icon::before,
+.shared-menu-icon::after {
+  position: absolute;
+  left: 0;
+  content: "";
+}
+
+.shared-menu-icon::before { top: -6px; }
+.shared-menu-icon::after  { top: 6px; }
+
+/* ---------- Desktop Nav Links ---------- */
+.shared-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  z-index: 1031;
+}
+
+.shared-nav-link {
+  position: relative;
+  display: inline-block;
+  padding: 0.65rem 0.9rem;
+  border-radius: 0.5rem;
+  color: #333;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.shared-nav-link:hover,
+.shared-nav-link.is-active {
+  background: #f5f5f5;
+  color: #000;
+}
+
+.shared-nav-link.is-active {
+  font-weight: 700;
+}
+
+.shared-nav-link.is-active::after {
+  content: "";
+  position: absolute;
+  left: 0.9rem;
+  right: 0.9rem;
+  bottom: 0.3rem;
+  height: 2px;
+  border-radius: 2px;
+  background: #000;
+}
+
+.shared-nav-link:focus-visible,
+.shared-menu-toggle:focus-visible {
+  outline: 3px solid #000;
+  outline-offset: 3px;
+}
+
+/* ---------- Contact button (desktop, right side) ---------- */
+.shared-nav-cta {
+  display: none;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1.4rem;
+  border: 1px solid #000;
+  border-radius: 0.6rem;
+  background: #000;
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.45);
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.shared-nav-cta i {
+  font-size: 0.8rem;
+  transition: transform 0.2s ease;
+}
+
+.shared-nav-cta:hover {
+  background: #fff;
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 20px -10px rgba(0, 0, 0, 0.5);
+}
+
+.shared-nav-cta:hover i { transform: translateX(4px); }
+
+.shared-nav-cta:focus-visible {
+  outline: 3px solid #000;
+  outline-offset: 3px;
+}
+
+.shared-nav-cta.is-active {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.18);
+}
+
+/* ---------- Desktop layout: brand left | links centred | Contact button right ---------- */
+@media (min-width: 992px) {
+  .shared-nav-wrap {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    column-gap: 1rem;
+  }
+  .shared-brand { justify-self: start; }
+  .shared-nav-links { justify-self: center; }
+  .shared-nav-cta { display: inline-flex; justify-self: end; }
+  .shared-nav-link-contact { display: none; }   /* the button replaces this link on desktop */
+}
+
+/* ---------- Mobile Side Drawer ---------- */
+@media (max-width: 991.98px) {
+  .shared-nav-wrap {
+    padding-block: 0.5rem;
+    position: relative;
+  }
+
+  .shared-menu-toggle {
+    display: inline-flex;
+  }
+
+  .nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 999;
+    backdrop-filter: blur(2px);
+  }
+  .nav-overlay.is-open {
+    display: block;
+  }
+
+  .shared-nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    max-width: 80vw;
+    height: 100vh;
+    height: 100dvh;
+    background: #fff;
+    border-left: 1px solid #ddd;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    align-items: stretch;
+    padding: 88px 1.5rem 2rem;
+    gap: 0;
+    z-index: 1032;
+    transition: right 0.35s ease;
+    overflow-y: auto;
+  }
+  .shared-nav-links.is-open {
+    right: 0;
+  }
+
+  .shared-nav-link {
+    display: block;
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border-radius: 0;
+    border-bottom: 1px solid #eee;
+    font-size: 1rem;
+  }
+
+  .shared-nav-link.is-active::after {
+    display: none;
+  }
+
+  .shared-nav-link.is-active {
+    border-left: 3px solid #000;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .shared-brand-name { font-size: 1.05rem; }
+  .shared-brand-mark { width: 36px; height: 36px; }
+}
+
+/* =====================================================================
+   FOOTER
+   ===================================================================== */
+.shared-footer {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  color: #b9b9b9;
+  background: linear-gradient(180deg, #141414 0%, #070707 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+/* thin bright line across the very top */
+.shared-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #fff 50%, transparent);
+  opacity: 0.55;
+  z-index: 2;
+}
+
+/* soft decorative glows */
+.footer-glow {
+  position: absolute;
+  width: 26rem;
+  height: 26rem;
+  border-radius: 50%;
+  filter: blur(80px);
+  background: rgba(255, 255, 255, 0.07);
+  pointer-events: none;
+  z-index: -1;
+}
+.footer-glow-1 { top: -8rem; left: -6rem; }
+.footer-glow-2 { bottom: -10rem; right: -6rem; }
+
+/* giant outlined brand word behind everything */
+.footer-watermark {
+  position: absolute;
+  left: 50%;
+  bottom: -0.14em;
+  transform: translateX(-50%);
+  font-size: clamp(4.5rem, 17vw, 17rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.07);
+  pointer-events: none;
+  user-select: none;
+  z-index: -1;
+}
+
+.shared-footer-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* ----- top call-to-action strip ----- */
+.footer-emergency {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem 2rem;
+  margin-top: 4.5rem;
+  padding: 2rem 2.5rem;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.03));
+  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.8);
+}
+
+.fe-icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: 64px;
+  height: 64px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  background: #fff;
+  color: #000;
+  font-size: 1.6rem;
+}
+
+.fe-text { flex: 1 1 280px; }
+
+.fe-text h2 {
+  margin: 0 0 0.3rem;
+  color: #fff;
+  font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.fe-text p {
+  margin: 0;
+  color: #bdbdbd;
+  font-size: 1rem;
+}
+
+.fe-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.fbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.fbtn-light { background: #fff; color: #000; border: 1px solid #fff; }
+.fbtn-light:hover { background: #e9e9e9; color: #000; transform: translateY(-2px); }
+
+.fbtn-ghost { background: transparent; color: #fff; border: 1px solid rgba(255, 255, 255, 0.4); }
+.fbtn-ghost:hover { background: #fff; color: #000; border-color: #fff; transform: translateY(-2px); }
+
+/* ----- main grid ----- */
+.shared-footer-grid {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr 1.2fr 1.2fr 1.5fr;
+  gap: 3rem 2.5rem;
+  padding: 4.5rem 0 3.5rem;
+}
+
+.shared-footer h2.footer-title {
+  position: relative;
+  margin: 0 0 1.75rem;
+  padding-bottom: 0.9rem;
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.shared-footer h2.footer-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 38px;
+  height: 3px;
+  border-radius: 3px;
+  background: #fff;
+}
+
+.shared-footer .shared-brand-mark {
+  background: #fff;
+  color: #000;
+}
+
+.shared-footer .shared-brand-name,
+.shared-footer .shared-brand-name span {
+  color: #fff;
+}
+
+.shared-footer-brand p {
+  margin: 1.4rem 0 1.6rem;
+  max-width: 24rem;
+  color: #a9a9a9;
+  line-height: 1.8;
+}
+
+/* social icons */
+.footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-social a {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 1.05rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.footer-social a:hover {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px -8px rgba(255, 255, 255, 0.5);
+}
+
+/* link lists */
+.shared-footer-links,
+.shared-footer-contact {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.shared-footer-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #b9b9b9;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.shared-footer-links a i {
+  color: #fff;
+  font-size: 0.7rem;
+  opacity: 0.55;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.shared-footer-links a:hover {
+  color: #fff;
+  transform: translateX(5px);
+}
+
+.shared-footer-links a:hover i {
+  opacity: 1;
+  transform: translateX(2px);
+}
+
+/* contact list */
+.shared-footer-contact li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  line-height: 1.55;
+}
+
+.shared-footer-contact .fc-icon {
+  display: inline-flex;
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.6rem;
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.shared-footer-contact li:hover .fc-icon {
+  background: #fff;
+  color: #000;
+}
+
+.shared-footer-contact a,
+.shared-footer-contact span.fc-text {
+  color: #c9c9c9;
+  text-decoration: none;
+  word-break: break-word;
+}
+
+.shared-footer-contact a:hover { color: #fff; }
+
+.shared-footer-contact small {
+  display: block;
+  margin-bottom: 0.1rem;
+  color: #8a8a8a;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ----- bottom bar ----- */
+.shared-footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  padding: 1.6rem 0 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  color: #8f8f8f;
+  font-size: 0.92rem;
+}
+
+.shared-footer-bottom p { margin: 0; }
+
+.footer-tagline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  color: #a9a9a9;
+}
+
+.footer-tagline i { color: #fff; font-size: 0.45rem; }
+
+.shared-footer a:focus-visible,
+.back-to-top:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+/* ----- back to top ----- */
+.back-to-top {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 1020;
+  display: inline-flex;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background: #000;
+  color: #fff;
+  box-shadow: 0 10px 25px -8px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s, background-color 0.2s ease, color 0.2s ease;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* ----- footer responsive ----- */
+@media (max-width: 1199.98px) {
+  .shared-footer-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .shared-footer-brand {
+    grid-column: 1 / -1;
+  }
+  .shared-footer-brand p {
+    max-width: 38rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .footer-emergency {
+    margin-top: 3rem;
+    padding: 1.5rem;
+  }
+  /* brand on top (full width), then the 4 blocks as 2 x 2:
+     Quick Links | Our Products
+     Our Services | Contact Us */
+  .shared-footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 3rem 0 2.5rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  /* stays 2 columns on phones (left + right), compact sizes so text fits */
+  .shared-footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.25rem 1.25rem;
+  }
+  .shared-footer h2.footer-title {
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    font-size: 0.88rem;
+    letter-spacing: 0.06em;
+  }
+  .shared-footer-links { gap: 0.7rem; }
+  .shared-footer-links a {
+    gap: 0.45rem;
+    font-size: 0.92rem;
+    line-height: 1.35;
+  }
+  .shared-footer-links a i { font-size: 0.6rem; }
+  .shared-footer-contact { gap: 1rem; }
+  .shared-footer-contact li { gap: 0.6rem; font-size: 0.88rem; }
+  .shared-footer-contact .fc-icon {
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+  }
+  .shared-footer-contact a,
+  .shared-footer-contact span.fc-text { overflow-wrap: anywhere; }
+  .shared-footer-contact small { font-size: 0.68rem; }
+  .fe-actions, .fbtn { width: 100%; }
+  .fbtn { justify-content: center; }
+  .shared-footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shared-nav-link,
+  .shared-nav-links,
+  .shared-header,
+  .shared-nav-wrap,
+  .back-to-top,
+  .footer-social a,
+  .shared-footer-links a,
+  .fbtn {
+    transition: none;
+  }
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Our Blogs | Skyluxe Elevators</title>
+  <meta name="description" content="Guides, safety tips and ideas about home elevators from Skyluxe Elevators.">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  
+  <link href="css/blogs.css" rel="stylesheet">
+  <link href="css/common.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="site-header"></div>
+
+  <header class="page-hero">
+    <div class="container">
+      <h1 class="mb-3">Our Blogs</h1>
+      <p>Tips, guides and ideas for living with a home elevator</p>
+    </div>
+  </header>
+
+  <section class="py-5">
+    <div class="container">
+
+      <div id="featuredWrap" class="mb-5"></div>
+
+      <div class="row g-3 align-items-center mb-4">
+        <div class="col-lg-7">
+          <div id="filters" class="d-flex flex-wrap gap-2"></div>
+        </div>
+        <div class="col-lg-5">
+          <div class="input-group">
+            <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+            <input id="search" type="search" class="form-control" placeholder="Search articles..."
+              aria-label="Search articles">
+          </div>
+        </div>
+      </div>
+
+      <div id="grid" class="row g-4"></div>
+      <div id="empty" class="text-center py-5 d-none">
+        <i class="bi bi-journal-x display-4 text-secondary"></i>
+        <p class="mt-3 mb-0">No articles found. Try a different search or category.</p>
+      </div>
+
+      <div class="cta-band p-4 p-md-5 mt-5 d-md-flex align-items-center justify-content-between gap-4">
+        <div>
+          <h2 class="h3 fw-bold mb-2">Thinking about a home elevator?</h2>
+          <p class="mb-0">Talk to our team for a free consultation and find the right fit for your home.</p>
+        </div>
+        <a href="contact.html" class="btn btn-light fw-semibold rounded-3 px-4 py-2 mt-3 mt-md-0 text-nowrap">Contact Us
+          <i class="bi bi-arrow-right ms-1"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content post-modal-content">
+        <div class="modal-header border-0 pb-0">
+          <div><span id="pmCat" class="badge badge-cat mb-2"></span>
+            <h2 class="modal-title h4 fw-bold text-dark" id="postModalTitle"></h2>
+            <div id="pmMeta" class="small text-secondary mt-1"></div>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="pmBody"></div>
+        <div class="modal-footer border-0">
+          <a href="contact.html" class="btn btn-skyluxe">Talk to our team</a>
+          <button type="button" class="btn btn-outline-secondary rounded-3" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="site-footer"></div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/pages/blogs.js"></script>
+</body>
+
+</html>

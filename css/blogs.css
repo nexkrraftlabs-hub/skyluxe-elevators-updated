@@ -1,0 +1,193 @@
+:root {
+      --skyluxe-black: #000000;
+      --skyluxe-black-dark: #111111;
+      --skyluxe-black-light: #f5f5f5;
+      --skyluxe-ink: #000000;
+      --skyluxe-muted: #666666;
+    }
+
+    body {
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      color: #333;
+      background: #fff
+    }
+
+    .page-hero {
+      background: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url("../assets/images/blogs-lift.jpg") center / cover no-repeat;
+      color: #fff;
+      padding: 9rem 0 7rem;
+      min-height: 70vh;
+      text-align: center
+    }
+
+    .page-hero h1 {
+      font-weight: 700;
+      font-size: calc(2rem + 2vw)
+    }
+
+    .page-hero p {
+      font-size: 1.25rem;
+      margin: 0;
+      color: #e0e0e0
+    }
+
+    .btn-skyluxe {
+      background: var(--skyluxe-black);
+      border-color: var(--skyluxe-black);
+      color: #fff;
+      font-weight: 600;
+      border-radius: .75rem;
+      padding: .75rem 1.5rem
+    }
+
+    .btn-skyluxe:hover,
+    .btn-skyluxe:focus {
+      background: var(--skyluxe-black-dark);
+      border-color: var(--skyluxe-black-dark);
+      color: #fff
+    }
+
+    .skyluxe-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 1rem;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,.1)
+    }
+
+    .form-control,
+    .form-select {
+      border-radius: .6rem;
+      padding: .65rem .9rem;
+      border-color: #ccc
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+      border-color: var(--skyluxe-black);
+      box-shadow: 0 0 0 .2rem rgba(0,0,0,.2)
+    }
+
+    .form-label {
+      font-weight: 500;
+      color: #333;
+      font-size: .9rem
+    }
+
+    .icon-box {
+      width: 48px;
+      height: 48px;
+      flex: 0 0 48px;
+      border-radius: .75rem;
+      background: var(--skyluxe-black-light);
+      color: var(--skyluxe-black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem
+    }
+
+    .filter-btn {
+      border: 1px solid #ddd;
+      background: #fff;
+      color: #333;
+      border-radius: 2rem;
+      padding: .4rem 1.1rem;
+      font-weight: 500;
+      font-size: .9rem;
+      transition: all .25s
+    }
+
+    .filter-btn:hover {
+      background: var(--skyluxe-black-light)
+    }
+
+    .filter-btn.active {
+      background: var(--skyluxe-black);
+      border-color: var(--skyluxe-black);
+      color: #fff
+    }
+
+    .post-card {
+      border: 1px solid #ddd;
+      border-radius: 1rem;
+      overflow: hidden;
+      background: #fff;
+      height: 100%;
+      transition: transform .3s, box-shadow .3s;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, .06)
+    }
+
+    .post-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 30px -10px rgba(0, 0, 0, .15)
+    }
+
+    .post-thumb {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 3.2rem;
+      background: #000
+    }
+
+    .post-theme-1 { background: linear-gradient(135deg, #000, #333); }
+    .post-theme-2 { background: linear-gradient(135deg, #333, #666); }
+    .post-theme-3 { background: linear-gradient(135deg, #666, #999); }
+    .post-theme-4 { background: linear-gradient(135deg, #999, #ccc); }
+    .post-theme-5 { background: linear-gradient(135deg, #ccc, #e0e0e0); }
+
+    .badge-cat {
+      background: var(--skyluxe-black-light);
+      color: var(--skyluxe-black);
+      font-weight: 600;
+      border-radius: 2rem;
+      padding: .35rem .8rem
+    }
+
+    .featured {
+      border-radius: 1.25rem;
+      overflow: hidden;
+      border: 1px solid #ddd;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,.1);
+      background: #fff
+    }
+
+    .featured .thumb {
+      min-height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 5rem;
+      background: #000
+    }
+
+    .read-link {
+      color: var(--skyluxe-black-dark);
+      font-weight: 600;
+      text-decoration: none;
+      background: none;
+      border: 0;
+      padding: 0
+    }
+
+    .read-link:hover {
+      color: var(--skyluxe-black);
+      text-decoration: underline
+    }
+
+    .cta-band {
+      background: linear-gradient(135deg, #000, #111);
+      color: #fff;
+      border-radius: 1.25rem
+    }
+
+    .modal-body p {
+      line-height: 1.8
+    }
+
+    .post-modal-content {
+      border-radius: 1rem;
+    }
