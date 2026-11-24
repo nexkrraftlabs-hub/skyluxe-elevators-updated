@@ -1,0 +1,6 @@
+# Media hosted on Cloudinary
+assets/images/hero-video.mp4
+
+# OS generated files
+.DS_Store
+Thumbs.db
