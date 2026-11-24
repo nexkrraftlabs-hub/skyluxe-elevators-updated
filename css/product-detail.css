@@ -94,9 +94,26 @@
 }
 
 /* overview image: keep the whole picture feeling premium */
-.pd-main-img { height: 20rem; }
-@media (min-width: 768px) { .pd-main-img { height: 28rem; } }
-@media (min-width: 992px) { .pd-main-img { height: 32rem; } }
+.pd-main-img {
+  height: 24rem;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+@media (min-width: 768px) { .pd-main-img { height: 32rem; } }
+@media (min-width: 1200px) { .pd-main-img { height: 36rem; } }
+.pd-main-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
 
 .pd-overview-title {
   font-weight: 800;
