@@ -28,6 +28,119 @@
     .hero p { font-size: calc(1rem + .3vw); max-width: 48rem; margin: 0 auto; color: #e0e0e0; }
     @media (min-width: 992px) { .hero { padding: 11rem 0 10rem; } }
 
+    /* ---------- SERVICE OVERVIEW CARDS ---------- */
+    .service-cards-section { background: #ffffff; }
+    .badge-service-eyebrow {
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #059669; background: #e6f4ea; border: 1px solid rgba(5, 150, 105, 0.25);
+      padding: 0.35rem 0.95rem; border-radius: 999px;
+    }
+    .sc-card {
+      height: 100%;
+      padding: 2.2rem 1.8rem;
+      border-radius: 1.25rem;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06);
+      transition: all 0.4s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .sc-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 25px 45px -10px rgba(0, 0, 0, 0.12);
+      border-color: #cbd5e1;
+    }
+    .sc-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.85rem;
+      margin-bottom: 1.5rem;
+      transition: transform 0.4s ease;
+    }
+    .sc-card:hover .sc-icon {
+      transform: scale(1.12) rotate(3deg);
+    }
+
+    /* Colorful Variants */
+    .sci-green {
+      background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+      color: #059669;
+      box-shadow: 0 10px 20px -4px rgba(16, 185, 129, 0.35);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+    }
+    .sci-blue {
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+      color: #2563eb;
+      box-shadow: 0 10px 20px -4px rgba(37, 99, 235, 0.35);
+      border: 1px solid rgba(37, 99, 235, 0.25);
+    }
+    .sci-red {
+      background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+      color: #dc2626;
+      box-shadow: 0 10px 20px -4px rgba(220, 38, 38, 0.35);
+      border: 1px solid rgba(220, 38, 38, 0.25);
+    }
+    .sci-purple {
+      background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+      color: #7c3aed;
+      box-shadow: 0 10px 20px -4px rgba(124, 58, 237, 0.35);
+      border: 1px solid rgba(124, 58, 237, 0.25);
+    }
+    .sci-amber {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      color: #d97706;
+      box-shadow: 0 10px 20px -4px rgba(217, 119, 6, 0.35);
+      border: 1px solid rgba(217, 119, 6, 0.25);
+    }
+    .sci-cyan {
+      background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%);
+      color: #0284c7;
+      box-shadow: 0 10px 20px -4px rgba(2, 132, 199, 0.35);
+      border: 1px solid rgba(2, 132, 199, 0.25);
+    }
+
+    .sc-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 0.85rem;
+    }
+    .sc-desc {
+      color: #4b5563;
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+    .sc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      border-top: 1px solid #f1f5f9;
+      padding-top: 1.1rem;
+    }
+    .sc-list li {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #374151;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .sc-list li i {
+      color: #10b981;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
     /* ---------- MINT SECTIONS ---------- */
     .mint-bg { background: var(--bg-alt); }
     .mint-panel { background: rgba(245, 245, 245, .45); border-radius: 1.5rem; padding: 1.5rem; }
